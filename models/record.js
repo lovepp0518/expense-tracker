@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // Record.belongsTo(models.User, { foreignKey: 'userId' })中，FK參數可不加，因為預設FK就是Model名稱+Id
       Record.belongsTo(models.User)
+      Record.belongsTo(models.Category)
     }
   }
   Record.init({
@@ -19,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     date: DataTypes.DATE,
     amount: DataTypes.INTEGER,
     userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    categoryId: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
