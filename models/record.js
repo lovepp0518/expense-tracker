@@ -10,13 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // Record.belongsTo(models.User, { foreignKey: 'userId' })中，FK參數可不加，因為預設FK就是Model名稱+Id
+      Record.belongsTo(models.User)
     }
   }
   Record.init({
     name: DataTypes.STRING,
     date: DataTypes.DATE,
-    amount: DataTypes.INTEGER
+    amount: DataTypes.INTEGER,
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Record',
